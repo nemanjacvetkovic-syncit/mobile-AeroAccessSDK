@@ -19,9 +19,9 @@ import MistSDK
 
 public class AeroAccess: NSObject, AeroAccessService {
     let mistManager: IndoorLocationManager
-    var isStarted: Bool = false
+    public var isStarted: Bool = false
     
-    init(accessToken: String) {
+    public init(accessToken: String) {
         self.mistManager = IndoorLocationManager.sharedInstance(accessToken)
     }
     
@@ -94,11 +94,11 @@ public class AeroAccess: NSObject, AeroAccessService {
 }
 
 extension AeroAccess: IndoorLocationDelegate {
-    func didUpdate(_ map: MistMap!) {
+    public func didUpdate(_ map: MistMap!) {
         debugPrint(">>> didUpdate MistMap.name = \(map.name.description)")
     }
 
-    func didUpdateRelativeLocation(_ relativeLocation: MistPoint!) {
+    public func didUpdateRelativeLocation(_ relativeLocation: MistPoint!) {
         let language = Locale.current.language.languageCode?.identifier
         let platform = "iOS"
         let manufactur = "Apple"
@@ -118,17 +118,17 @@ extension AeroAccess: IndoorLocationDelegate {
         shouldApiCall()
     }
 
-    func didReceivedOrgInfo(withTokenName tokenName: String!, andOrgID orgID: String!) {
+    public func didReceivedOrgInfo(withTokenName tokenName: String!, andOrgID orgID: String!) {
         debugPrint(">>> didReceivedOrgInfo tokenName = \(tokenName.description) orgID = \(orgID.description)")
     }
 
-    func didErrorOccur(with errorType: ErrorType, andMessage errorMessage: String!) {
+    public func didErrorOccur(with errorType: ErrorType, andMessage errorMessage: String!) {
         debugPrint(">>> didErrorOccur errorType = \(errorType.rawValue) errorMessage = \(errorMessage.description)")
     }
 }
 
 extension AeroAccess: VirtualBeaconsDelegate {
-    func didRangeVirtualBeacon(_ mistVirtualBeacon: MistVirtualBeacon!) {
+    public func didRangeVirtualBeacon(_ mistVirtualBeacon: MistVirtualBeacon!) {
         let mobileUUID = UIDevice.current.identifierForVendor
         let mistUUID = UUID(uuidString: mistVirtualBeacon.vbID)
         let timestamp = NSDate().timeIntervalSince1970
@@ -141,13 +141,13 @@ extension AeroAccess: VirtualBeaconsDelegate {
         DataBaseManager.shared.addData(virtualBeacon: virtualBeacon)
     }
     
-    func didUpdateVirtualBeaconList(_ mistVirtualBeacons: [MistVirtualBeacon]!) {
+    public func didUpdateVirtualBeaconList(_ mistVirtualBeacons: [MistVirtualBeacon]!) {
         debugPrint(">>> didUpdateVirtualBeaconList mistVirtualBeacons = \(mistVirtualBeacons.count)")
     }
 }
 
 extension AeroAccess: ZonesDelegate {
-    func didEnter(_ mistZone: MistZone!) {
+    public func didEnter(_ mistZone: MistZone!) {
         let mobileUUID = UIDevice.current.identifierForVendor
         let timestamp = NSDate().timeIntervalSince1970
         let timestampInt = Int(timestamp)
@@ -161,13 +161,13 @@ extension AeroAccess: ZonesDelegate {
 //        shouldApiCall()
     }
     
-    func didExitZone(_ mistZone: MistZone!) {
+    public func didExitZone(_ mistZone: MistZone!) {
         debugPrint(">>> didExitZone MistZone name = \(mistZone.name.description) ID = \(mistZone.zoneID.description)")
     }
 }
 
 extension AeroAccess: MapsListDelegate {
-    func didReceiveAllMaps(_ maps: [MistMap]!) {
+    public func didReceiveAllMaps(_ maps: [MistMap]!) {
         debugPrint(">>> didReceiveAllMaps maps = \(maps.count)")
     }
 }

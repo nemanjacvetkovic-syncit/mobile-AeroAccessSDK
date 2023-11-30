@@ -19,15 +19,15 @@ public protocol WakeUpDelegate: AnyObject {
     func didExitRegion(region: String)
 }
 
-class WakeUp: NSObject {
+public class WakeUp: NSObject {
     weak var delegate: WakeUpDelegate?
     
     private lazy var locationManager = CLLocationManager()
     private let orgId: String
     
-    var isWakeUpRuning: Bool = false
+    public var isWakeUpRuning: Bool = false
     
-    init(orgId: String) {
+    public init(orgId: String) {
         self.orgId = orgId
         super.init()
         setUpLocationManager()
