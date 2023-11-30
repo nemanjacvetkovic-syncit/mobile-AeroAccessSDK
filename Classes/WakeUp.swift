@@ -23,11 +23,12 @@ class WakeUp: NSObject {
     weak var delegate: WakeUpDelegate?
     
     private lazy var locationManager = CLLocationManager()
-    private let orgId = AeroAccessConstants.orgId
+    private let orgId: String
     
     var isWakeUpRuning: Bool = false
     
-    override init() {
+    init(orgId: String) {
+        self.orgId = orgId
         super.init()
         setUpLocationManager()
     }
