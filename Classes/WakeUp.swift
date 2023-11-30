@@ -8,13 +8,13 @@
 import Foundation
 import CoreLocation
 
-public protocol WakeUpService {
+protocol WakeUpService {
     var isWakeUpRuning: Bool { get }
     public func start()
     public func stop()
 }
 
-public protocol WakeUpDelegate: AnyObject {
+protocol WakeUpDelegate: AnyObject {
     func didEnterRegion(region: String)
     func didExitRegion(region: String)
 }

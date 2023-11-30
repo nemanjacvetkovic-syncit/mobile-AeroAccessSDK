@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol AeroAccessService {
+protocol AeroAccessService {
     var isStarted: Bool { get }
     public func start()
     public func stop()
