@@ -93,11 +93,11 @@ public class WakeUp: NSObject {
 }
 
 extension WakeUp: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    public func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         delegate?.didEnterRegion(region: region.identifier)
     }
     
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+    public func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         delegate?.didExitRegion(region: region.identifier)
     }
 }
