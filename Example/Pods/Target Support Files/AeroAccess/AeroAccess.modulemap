@@ -1,0 +1,6 @@
+framework module AeroAccess {
+  umbrella header "AeroAccess-umbrella.h"
+
+  export *
+  module * { export * }
+}
