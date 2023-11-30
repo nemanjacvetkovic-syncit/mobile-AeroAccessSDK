@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol AeroAccessService {
+public protocol AeroAccessService {
     var isStarted: Bool { get }
-    func start()
-    func stop()
+    public func start()
+    public func stop()
 }
 
 #if !targetEnvironment(simulator)
 
 import MistSDK
 
-class AeroAccess: NSObject, AeroAccessService {
+public class AeroAccess: NSObject, AeroAccessService {
     let mistManager: IndoorLocationManager
     var isStarted: Bool = false
     
@@ -25,7 +25,7 @@ class AeroAccess: NSObject, AeroAccessService {
         self.mistManager = IndoorLocationManager.sharedInstance(accessToken)
     }
     
-    func start() {
+    public func start() {
         mistManager.virtualBeaconsDelegate = self
         mistManager.zonesDelegate = self
         mistManager.mapsListDelegate = self
@@ -33,7 +33,7 @@ class AeroAccess: NSObject, AeroAccessService {
         isStarted = true
     }
     
-    func stop() {
+    public func stop() {
         mistManager.stop()
         isStarted = false
     }

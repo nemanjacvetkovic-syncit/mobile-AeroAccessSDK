@@ -8,13 +8,13 @@
 import Foundation
 import CoreLocation
 
-protocol WakeUpService {
+public protocol WakeUpService {
     var isWakeUpRuning: Bool { get }
-    func start()
-    func stop()
+    public func start()
+    public func stop()
 }
 
-protocol WakeUpDelegate: AnyObject {
+public protocol WakeUpDelegate: AnyObject {
     func didEnterRegion(region: String)
     func didExitRegion(region: String)
 }
@@ -104,11 +104,11 @@ extension WakeUp: CLLocationManagerDelegate {
 
 extension WakeUp: WakeUpService {
     
-    func start() {
+    public func start() {
         startMonitoringBeaconRegion()
     }
     
-    func stop() {
+    public func stop() {
         stopMonitoringBeaconRegion()
     }
 }
