@@ -6,13 +6,16 @@
 //
 
 import Foundation
-import MistSDK
 
 protocol AeroAccessService {
     var isStarted: Bool { get }
     func start()
     func stop()
 }
+
+#if !targetEnvironment(simulator)
+
+import MistSDK
 
 class AeroAccess: NSObject, AeroAccessService {
     let mistManager: IndoorLocationManager
@@ -168,3 +171,5 @@ extension AeroAccess: MapsListDelegate {
         debugPrint(">>> didReceiveAllMaps maps = \(maps.count)")
     }
 }
+
+#endif
