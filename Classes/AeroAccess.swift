@@ -7,10 +7,10 @@
 
 import Foundation
 
-protocol AeroAccessService {
+public protocol AeroAccessService {
     var isStarted: Bool { get }
-    public func start()
-    public func stop()
+    func start()
+    func stop()
 }
 
 #if !targetEnvironment(simulator)
