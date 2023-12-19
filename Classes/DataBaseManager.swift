@@ -78,7 +78,7 @@ class DataBaseManager {
     
     func addData(aaMistMaps: [AAMistMap]) {
         try! database.write {
-            database.add(aaMistMap)
+            database.add(aaMistMaps)
         }
     }
     
