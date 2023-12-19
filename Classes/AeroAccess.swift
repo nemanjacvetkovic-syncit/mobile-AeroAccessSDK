@@ -48,6 +48,7 @@ public class AeroAccess: NSObject, AeroAccessService {
             sendBeaconPoints()
             sendVirtualBeacons()
             sendBeaconZones()
+            sendAAMistMaps()
             UserDefaults.standard.setValue(Date(), forKey: AeroAccessConstants.kLastApiCallDate)
             UserDefaults.standard.synchronize()
         }
@@ -87,6 +88,19 @@ public class AeroAccess: NSObject, AeroAccessService {
                     debugPrint(">>> BeaconZones sent and deleted <<<")
                 } else {
 //                    self?.sendBeaconZones()
+                }
+            }
+        }
+    }
+    
+    private func sendAAMistMaps() {
+        if let aaMistMaps = DataBaseManager.shared.getAAMistMap() {
+            ApiService.postMistMaps(aaMistMaps: aaMistMaps) { [weak self] success in
+                if success {
+                    DataBaseManager.shared.deleteAllAAMistMaps()
+                    debugPrint(">>> AAMistMaps sent and deleted <<<")
+                } else {
+//                    self.sendAAMistMaps()
                 }
             }
         }
@@ -168,7 +182,17 @@ extension AeroAccess: ZonesDelegate {
 
 extension AeroAccess: MapsListDelegate {
     public func didReceiveAllMaps(_ maps: [MistMap]!) {
+        let mobileUUID = UIDevice.current.identifierForVendor
+        
+        var aaMistMaps = [AAMistMap]()
+        for map in maps {
+            let aaMistMap = AAMistMap(uuid_mobile: mobileUUID, id: mobileUUID, name: map.name, type: map.type, width: map.width, height: map.height, width_m: map.widthM, height_m: map.heightM, ppm: map.ppm, site_id: map.siteID, org_id: map.orgID, created_time: map.createdTime, modified_time: map.modifiedTime)
+            aaMistMaps.append(aaMistMap)
+        }
+        
         debugPrint(">>> didReceiveAllMaps maps = \(maps.count)")
+        
+        DataBaseManager.shared.addData(aaMistMaps: aaMistMaps)
     }
 }
 

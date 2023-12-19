@@ -1,18 +1,14 @@
 //
-//  ImportBeaconPoint.swift
-//  Alamofire
+//  MistMapData.swift
+//  Pods
 //
-//  Created by Nemanja Cvetkovic on 29.11.23..
+//  Created by Nemanja Cvetkovic on 18.12.23..
 //
 
 import Foundation
 
-struct ImportBeaconPoint: Codable {
-    var importBeaconPoints: BeaconPointsData?
-    
-    enum CodingKeys: String, CodingKey {
-        case importBeaconPoints = "import-beacon-points"
-    }
+struct AAMistMapData: Codable {
+    var data: [AAMistMap]?
     
     func asDictionary() throws -> [String: Any] {
         let data = try JSONEncoder().encode(self)

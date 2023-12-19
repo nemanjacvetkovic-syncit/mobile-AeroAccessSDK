@@ -20,7 +20,6 @@ class DataBaseManager {
     func addData(beaconPoint: BeaconPoint) {
         try! database.write {
             database.add(beaconPoint)
-            print("Added new BeaconPoint")
         }
     }
     
@@ -40,7 +39,6 @@ class DataBaseManager {
     func addData(virtualBeacon: VirtualBeacon) {
         try! database.write {
             database.add(virtualBeacon)
-            print("Added new object")
         }
     }
     
@@ -61,7 +59,6 @@ class DataBaseManager {
     func addData(beaconZone: BeaconZone) {
         try! database.write {
             database.add(beaconZone)
-            print("Added new object")
         }
     }
     
@@ -74,6 +71,26 @@ class DataBaseManager {
         try! database.write({
             let allBeaconZones = database.objects(BeaconZone.self)
             database.delete(allBeaconZones)
+        })
+    }
+    
+    //MARK: MistMaps
+    
+    func addData(aaMistMaps: [AAMistMap]) {
+        try! database.write {
+            database.add(aaMistMap)
+        }
+    }
+    
+    func getAAMistMap() -> [AAMistMap]? {
+        let results: [AAMistMap] = database.objects(AAMistMap.self).toArray(ofType: AAMistMap.self)
+        return results.count > 0 ? results : nil
+    }
+    
+    func deleteAllAAMistMaps() {
+        try! database.write({
+            let allAAMistMaps = database.objects(AAMistMap.self)
+            database.delete(allAAMistMaps)
         })
     }
 }

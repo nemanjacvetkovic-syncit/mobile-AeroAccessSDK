@@ -12,6 +12,7 @@ struct AeroAccessConstants {
     static let postBeaconPoints = "https://aeroaccess.syncitgroup.dev/api/import-beacon-points"
     static let postVirtualBeacons = "https://aeroaccess.syncitgroup.dev/api/import-virtual-beacons"
     static let postBeaconZones = "https://aeroaccess.syncitgroup.dev/api/import-beacon-zones"
+    static let postMistMaps = "https://aeroaccess.syncitgroup.dev/api/import-mist-map"
     
     static let bearerToken = "1|0vbmqDzWmeZSOveUIzJcQYwRoLWPHd5OumsTanPK3f207959"
     
