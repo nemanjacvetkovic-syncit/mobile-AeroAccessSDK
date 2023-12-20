@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,13 +16,84 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Pg2-wm-tV5">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Kontur" translatesAutoresizingMaskIntoConstraints="NO" id="Hfa-6Q-1l0">
+                                <rect key="frame" x="39.333333333333343" y="226.33333333333334" width="314.33333333333326" height="58.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hfa-6Q-1l0" secondAttribute="height" multiplier="279:52" id="3VE-yH-37m"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seG-nV-dsM">
+                                <rect key="frame" x="96.666666666666686" y="349" width="200" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="9KK-sO-zCj"/>
+                                    <constraint firstAttribute="width" constant="200" id="BVX-Qc-aqk"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start Service">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" red="0.31764705882352939" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="startServiceButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uCR-52-JwA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xb8-x4-X3b">
+                                <rect key="frame" x="96.666666666666686" y="441" width="200" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="5Mn-TB-g07"/>
+                                    <constraint firstAttribute="height" constant="60" id="Mpm-Sq-PoQ"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sync Data">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" red="0.31764705882352939" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="syncDataButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fVf-75-GnI"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pg2-wm-tV5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="1lp-Ds-B4U"/>
+                            <constraint firstItem="Hfa-6Q-1l0" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="9VT-zw-aMd"/>
+                            <constraint firstItem="xb8-x4-X3b" firstAttribute="top" secondItem="seG-nV-dsM" secondAttribute="bottom" constant="32" id="Kav-vu-Cx7"/>
+                            <constraint firstItem="xb8-x4-X3b" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="LDO-GU-piG"/>
+                            <constraint firstItem="Hfa-6Q-1l0" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" multiplier="0.6" id="M4J-Ns-QAj"/>
+                            <constraint firstAttribute="bottom" secondItem="Pg2-wm-tV5" secondAttribute="bottom" id="QEB-O8-03N"/>
+                            <constraint firstItem="Hfa-6Q-1l0" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.8" id="TFg-15-mWq"/>
+                            <constraint firstItem="Pg2-wm-tV5" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="cRt-yD-en6"/>
+                            <constraint firstAttribute="trailing" secondItem="Pg2-wm-tV5" secondAttribute="trailing" id="dMC-bQ-uPi"/>
+                            <constraint firstItem="seG-nV-dsM" firstAttribute="top" secondItem="Hfa-6Q-1l0" secondAttribute="bottom" constant="64" id="jLk-jq-ipp"/>
+                            <constraint firstItem="seG-nV-dsM" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="pBb-AB-hcH"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="startServiceButton" destination="seG-nV-dsM" id="eMe-Xw-qXc"/>
+                        <outlet property="syncDataButton" destination="xb8-x4-X3b" id="csa-H8-NvH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="142" y="-1"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Background" width="414" height="896"/>
+        <image name="Logo-Kontur" width="7950" height="1479"/>
+    </resources>
 </document>

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "015020CA4BF5D727122B80F2AEAE113E"
-               BuildableName = "AeroAccess"
+               BuildableName = "AeroAccess.framework"
                BlueprintName = "AeroAccess"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

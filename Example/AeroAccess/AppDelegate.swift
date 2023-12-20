@@ -12,10 +12,18 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var backgroundTask: UIBackgroundTaskIdentifier?
+    var viewModel: ViewModel?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let options: UNAuthorizationOptions = [.badge, .sound, .alert]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { _, error in
+            if let error = error {
+                debugPrint("Error: \(error)")
+            }
+        }
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 
@@ -44,3 +52,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        if let isLocalNotification = userInfo["isLocalNotification"] as? Bool {
+            if isLocalNotification {
+                startBackgroundTask()
+            }
+        }
+        debugPrint("UserInfo: \(userInfo)")
+    }
+}
+
+extension AppDelegate {
+    func startBackgroundTask() {
+        self.stopBackgroundTask()
+        backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+            self.stopBackgroundTask()
+        })
+        
+        DispatchQueue.main.async {
+            self.configureAndStartAeroAccessService()
+        }
+    }
+    
+    func stopBackgroundTask() {
+        guard let backgroundTask = backgroundTask else { return }
+        if backgroundTask != UIBackgroundTaskIdentifier.invalid {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+        }
+    }
+}
+
+extension AppDelegate {
+    func configureAndStartAeroAccessService() {
+        self.viewModel = ViewModel()
+        viewModel?.start()
+        debugPrint(">>> AeroAccess Service Started ...")
+    }
+}
