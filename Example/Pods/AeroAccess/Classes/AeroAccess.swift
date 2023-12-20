@@ -11,6 +11,7 @@ public protocol AeroAccessService {
     var isStarted: Bool { get }
     func start()
     func stop()
+    func syncData()
 }
 
 #if !targetEnvironment(simulator)
@@ -38,13 +39,20 @@ public class AeroAccess: NSObject, AeroAccessService {
         isStarted = false
     }
     
+    public func syncData() {
+        sendBeaconPoints()
+        sendVirtualBeacons()
+        sendBeaconZones()
+        sendAAMistMaps()
+    }
+    
     private func shouldApiCall() {
         guard let lastDate = UserDefaults.standard.value(forKey: AeroAccessConstants.kLastApiCallDate) as? Date else {
             UserDefaults.standard.setValue(Date(), forKey: AeroAccessConstants.kLastApiCallDate)
             return
         }
         let timeElapsed: Int = Int(Date().timeIntervalSince(lastDate))
-        if timeElapsed > 5 * 60 {
+        if timeElapsed > 15 * 60 {
             sendBeaconPoints()
             sendVirtualBeacons()
             sendBeaconZones()
@@ -115,7 +123,7 @@ extension AeroAccess: IndoorLocationDelegate {
     public func didUpdateRelativeLocation(_ relativeLocation: MistPoint!) {
         let language = Locale.current.language.languageCode?.identifier
         let platform = "iOS"
-        let manufactur = "Apple"
+        let manufacturer = "Apple"
         let model = UIDevice.modelName
         let osVersion = UIDevice.current.systemVersion
         let mobileUUID = UIDevice.current.identifierForVendor
@@ -125,7 +133,7 @@ extension AeroAccess: IndoorLocationDelegate {
         
         debugPrint(">>> didUpdateRelativeLocation MistPoint = x=\(relativeLocation.x) y=\(relativeLocation.y)")
         
-        let beaconPoint = BeaconPoint(uuid_mobile: mobileUUID, language: language, host: "", platform: platform, manufactur: manufactur, model: model, os: osVersion, latitude_x: "\(relativeLocation.x)", longitude_y: "\(relativeLocation.y)", timestamp: timestampString)
+        let beaconPoint = BeaconPoint(uuid_mobile: mobileUUID, language: language, host: "", platform: platform, manufacturer: manufacturer, model: model, os: osVersion, latitude_x: "\(relativeLocation.x)", longitude_y: "\(relativeLocation.y)", timestamp: timestampString)
         
         DataBaseManager.shared.addData(beaconPoint: beaconPoint)
         
@@ -186,7 +194,7 @@ extension AeroAccess: MapsListDelegate {
         
         var aaMistMaps = [AAMistMap]()
         for map in maps {
-            let aaMistMap = AAMistMap(uuid_mobile: mobileUUID, id: mobileUUID, name: map.name, type: map.type, width: map.width, height: map.height, width_m: map.widthM, height_m: map.heightM, ppm: map.ppm, site_id: map.siteID, org_id: map.orgID, created_time: map.createdTime, modified_time: map.modifiedTime)
+            let aaMistMap = AAMistMap(uuid_mobile: mobileUUID, id: mobileUUID, name: map.name, type: map.type, width: map.width, height: map.height, widthM: map.widthM, heightM: map.heightM, ppm: map.ppm, site_id: UUID(uuidString: map.siteID), org_id: UUID(uuidString: map.orgID), created_time: map.createdTime, modified_time: map.modifiedTime)
             aaMistMaps.append(aaMistMap)
         }
         

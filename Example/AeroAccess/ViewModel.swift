@@ -27,6 +27,10 @@ class ViewModel {
         aeroAccessService?.stop()
         wakeUpService?.stop()
     }
+    
+    func syncData() {
+        aeroAccessService?.syncData()
+    }
 }
 
 extension ViewModel: WakeUpDelegate {

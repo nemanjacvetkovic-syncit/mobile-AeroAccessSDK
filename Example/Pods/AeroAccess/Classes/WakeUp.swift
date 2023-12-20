@@ -53,7 +53,7 @@ public class WakeUp: NSObject {
         
         let shortUUID = orgUUID.uuidString.shortOrgUUIDString
         let beaconHexValues = ["a", "b", "c", "d", "e", "f"]
-        let numOfCyclicalBeacons = 3
+        let numOfCyclicalBeacons = 5
         
         for i in 0..<numOfCyclicalBeacons {
             if i < 10 {

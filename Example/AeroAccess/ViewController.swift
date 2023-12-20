@@ -36,15 +36,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func syncDataButtonPressed() {
+        viewModel?.syncData()
     }
     
     private func updateMist() {
         if isStarted {
             viewModel?.start()
             startServiceButton.setTitle("Stop Service", for: .normal)
+            syncDataButton.isHidden = true
         } else {
             viewModel?.stop()
             startServiceButton.setTitle("Start Service", for: .normal)
+            syncDataButton.isHidden = false
         }
     }
 }

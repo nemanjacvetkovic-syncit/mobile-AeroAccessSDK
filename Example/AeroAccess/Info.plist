@@ -22,6 +22,20 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string> AeroAccess wants to access the Bluetooth in background </string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string> AeroAccess wants to access the Bluetooth </string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string> AeroAccess wants to access the Location services in background </string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string> AeroAccess wants to access the Location services </string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
